@@ -1,7 +1,8 @@
 package com.techleads.app.exceptions;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+@JsonInclude(value = Include.NON_NULL)
 public class APIError {
 	private String id;
 	private String message;
