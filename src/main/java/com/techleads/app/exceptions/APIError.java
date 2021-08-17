@@ -2,9 +2,7 @@ package com.techleads.app.exceptions;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties
 public class APIError {
-	
 	private String id;
 	private String message;
 	private String code;
@@ -31,6 +29,13 @@ public class APIError {
 		this.code = code;
 		this.error = error;
 		this.classType = classType;
+	}
+	
+	public APIError(String message, String code, String error) {
+		super();
+		this.message = message;
+		this.code = code;
+		this.error = error;
 	}
 	public String getId() {
 		return id;

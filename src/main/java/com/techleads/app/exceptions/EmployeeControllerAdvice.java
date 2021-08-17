@@ -18,7 +18,7 @@ public class EmployeeControllerAdvice {
 	@ExceptionHandler(InvalidFormatException.class)
 	public ResponseEntity<APIError> HandleEmployeeNotFoundException(InvalidFormatException exp) {
 
-		APIError error = new APIError("Please enter a number value for Id field", "400");
+		APIError error = new APIError("Please enter a number value for Id field", "400", exp.getMessage());
 		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 	}
 
