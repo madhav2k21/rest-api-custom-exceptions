@@ -15,6 +15,21 @@ import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 
 @RestControllerAdvice
 public class EmployeeControllerAdvice {
+
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ExceptionHandler(MethodArgumentNotValidException.class)
+	public Map<String, APIError> handleValidationExceptions(MethodArgumentNotValidException ex) {
+		Map<String, APIError> errors = new HashMap<>();
+		ex.getBindingResult().getAllErrors().forEach((error) -> {
+			String fieldName = ((FieldError) error).getField();
+			String errorMessage = error.getDefaultMessage();
+
+			errors.put(fieldName,
+					new APIError("Bad Request", String.valueOf(HttpStatus.BAD_REQUEST.value()), errorMessage));
+		});
+		return errors;
+	}
+
 	@ExceptionHandler(InvalidFormatException.class)
 	public ResponseEntity<APIError> HandleEmployeeNotFoundException(InvalidFormatException exp) {
 
@@ -27,18 +42,6 @@ public class EmployeeControllerAdvice {
 
 		APIError error = new APIError("Employee not found with the given id", "400");
 		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
-	}
-
-	@ResponseStatus(HttpStatus.BAD_REQUEST)
-	@ExceptionHandler(MethodArgumentNotValidException.class)
-	public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
-		Map<String, String> errors = new HashMap<>();
-		ex.getBindingResult().getAllErrors().forEach((error) -> {
-			String fieldName = ((FieldError) error).getField();
-			String errorMessage = error.getDefaultMessage();
-			errors.put(fieldName, errorMessage);
-		});
-		return errors;
 	}
 
 }
