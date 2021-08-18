@@ -1,5 +1,6 @@
 package com.techleads.app.exceptions;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,6 +35,22 @@ public class EmployeeControllerAdvice {
 	public ResponseEntity<APIError> HandleEmployeeNotFoundException(InvalidFormatException exp) {
 
 		APIError error = new APIError("Please enter a number value for Id field", "400", exp.getMessage());
+		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+	}
+
+//	@ExceptionHandler(LocationFieldNotFoundException.class)
+//	public ResponseEntity<APIError> HandleLocationFieldNotFoundException(LocationFieldNotFoundException exp) {
+//
+//		APIError error = new APIError("Bad Request", "400", exp.getMessage(), Arrays.asList("HYD","CHN","BNG"));
+//		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+//	}
+
+	@ExceptionHandler(LocationFieldNotFoundException.class)
+	public ResponseEntity<Map<String, APIError>> HandleLocationFieldNotFoundException(
+			LocationFieldNotFoundException exp) {
+
+		Map<String, APIError> error = new HashMap<>();
+		error.put("location", new APIError("Bad Request", "400", exp.getMessage(), Arrays.asList("HYD", "CHN", "BNG")));
 		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 	}
 

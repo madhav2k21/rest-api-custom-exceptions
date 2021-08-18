@@ -1,5 +1,7 @@
 package com.techleads.app.exceptions;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @JsonInclude(value = Include.NON_NULL)
@@ -9,6 +11,7 @@ public class APIError {
 	private String code;
 	private String error;
 	private String classType;
+	private List<String> allowedNames;
 	
 	
 	public APIError() {
@@ -38,41 +41,83 @@ public class APIError {
 		this.code = code;
 		this.error = error;
 	}
+
+
+	public APIError(String message, String code, String error, List<String> allowedNames) {
+		super();
+		this.message = message;
+		this.code = code;
+		this.error = error;
+		this.allowedNames = allowedNames;
+	}
+
+
 	public String getId() {
 		return id;
 	}
+
+
 	public void setId(String id) {
 		this.id = id;
 	}
+
+
 	public String getMessage() {
 		return message;
 	}
+
+
 	public void setMessage(String message) {
 		this.message = message;
 	}
+
+
 	public String getCode() {
 		return code;
 	}
+
+
 	public void setCode(String code) {
 		this.code = code;
 	}
+
+
 	public String getError() {
 		return error;
 	}
+
+
 	public void setError(String error) {
 		this.error = error;
 	}
+
+
 	public String getClassType() {
 		return classType;
 	}
+
+
 	public void setClassType(String classType) {
 		this.classType = classType;
 	}
+
+
+	public List<String> getAllowedNames() {
+		return allowedNames;
+	}
+
+
+	public void setAllowedNames(List<String> allowedNames) {
+		this.allowedNames = allowedNames;
+	}
+
+
 	@Override
 	public String toString() {
 		return "APIError [id=" + id + ", message=" + message + ", code=" + code + ", error=" + error + ", classType="
-				+ classType + "]";
+				+ classType + ", allowedNames=" + allowedNames + "]";
 	}
+	
 	
 	
 

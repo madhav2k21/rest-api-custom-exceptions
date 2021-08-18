@@ -7,15 +7,20 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.techleads.app.exceptions.EmployeeNotFound;
+import com.techleads.app.exceptions.LocationFieldNotFoundException;
 import com.techleads.app.model.Employee;
 
 @Service
 public class EmployeeService {
+	private static List<String> locs=new ArrayList<>();
 
 	private static List<Employee> emps;
 	static {
 		emps = new ArrayList<>();
 		emps.add(new Employee(101, "Emp-1"));
+		locs.add("HYD");
+		locs.add("CHN");
+		locs.add("BNG");
 	}
 
 	public List<Employee> findAllEmployees() {
@@ -37,6 +42,20 @@ public class EmployeeService {
 		emps.add(employee);
 
 		return findEmployeeById(employee.getId());
+	}
+	
+	public void validateLocationName(Employee employee) {
+		boolean flag=false;
+		for (String value : locs) {
+			if(value.equals(employee.getLocation())) {
+				flag=true;
+				break;
+			}
+		}
+		if(!flag) {
+			throw new LocationFieldNotFoundException(employee.getLocation()+": Is not a valid name");
+			
+		}
 	}
 
 }

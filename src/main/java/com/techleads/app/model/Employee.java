@@ -13,8 +13,22 @@ public class Employee {
 	@Size(min=1,max=10,message="Size should be between 1 to 6")
 	private String name;
 	
+	@NotBlank(message = "Location is mandatory")
+	@Size(min=1,max=10,message="Size should be between 1 to 6")
+	private String location;
+	
+	
+	
 	public Employee() {
 		super();
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 	public Employee(Integer id, String name) {
@@ -42,7 +56,9 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", name=" + name + "]";
+		return "Employee [id=" + id + ", name=" + name + ", location=" + location + "]";
 	}
+
+	
 
 }
