@@ -36,6 +36,13 @@ public class Employee {
 		this.id = id;
 		this.name = name;
 	}
+	public Employee(Integer id, String name, String location) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.location=location;
+	}
+
 
 
 	public Integer getId() {

@@ -17,7 +17,7 @@ public class EmployeeService {
 	private static List<Employee> emps;
 	static {
 		emps = new ArrayList<>();
-		emps.add(new Employee(101, "Emp-1"));
+		emps.add(new Employee(101, "Emp-1", "HYD"));
 		locs.add("HYD");
 		locs.add("CHN");
 		locs.add("BNG");
