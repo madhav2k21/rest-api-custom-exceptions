@@ -10,7 +10,7 @@ public class APIError {
 	private String message;
 	private String code;
 	private String error;
-	private String classType;
+	private String allowedType;
 	private List<String> allowedNames;
 	
 	
@@ -26,13 +26,12 @@ public class APIError {
 	}
 
 
-	public APIError(String id, String message, String code, String error, String classType) {
+	public APIError(String message, String code, String error, String allowedType) {
 		super();
-		this.id = id;
 		this.message = message;
 		this.code = code;
 		this.error = error;
-		this.classType = classType;
+		this.allowedType = allowedType;
 	}
 	
 	public APIError(String message, String code, String error) {
@@ -92,13 +91,13 @@ public class APIError {
 	}
 
 
-	public String getClassType() {
-		return classType;
+	public String getAllowedType() {
+		return allowedType;
 	}
 
 
-	public void setClassType(String classType) {
-		this.classType = classType;
+	public void setAllowedType(String allowedType) {
+		this.allowedType = allowedType;
 	}
 
 
@@ -114,9 +113,12 @@ public class APIError {
 
 	@Override
 	public String toString() {
-		return "APIError [id=" + id + ", message=" + message + ", code=" + code + ", error=" + error + ", classType="
-				+ classType + ", allowedNames=" + allowedNames + "]";
+		return "APIError [id=" + id + ", message=" + message + ", code=" + code + ", error=" + error + ", allowedType="
+				+ allowedType + ", allowedNames=" + allowedNames + "]";
 	}
+
+
+	
 	
 	
 	
